@@ -1,47 +1,63 @@
-html {
-  background: url(https://cdn.pixabay.com/photo/2021/08/30/21/29/port-6587129_1280.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100vh;
-  font-size: 10px;
-}
-
-body {
+* {
   margin: 0;
   padding: 0;
+}
+html,
+body {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+body {
   display: flex;
-  flex: 1;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  min-width: 1000px;
 }
-
-.clock {
-  width: 30rem;
-  height: 30rem;
-  border: 20px solid white;
+.light .clock-frame {
+  position: relative;
+  background: #f8f8f8;
+  border: 5px solid #181818;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.45) inset;
+}
+.light .graduations {
+  background: #666;
+}
+.light .hour-number {
+  color: #181818;
+}
+.light .minutes,
+.light .hours {
+  background: #181818;
+}
+.dark .clock-frame {
+  position: relative;
+  background: #181818;
+  border: 5px solid #181818;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.55) inset;
+}
+.dark .graduations {
+  background: #aaa;
+}
+.dark .hour-number {
+  color: #f2f2f2;
+}
+.dark .minutes,
+.dark .hours {
+  background: #eee;
+}
+.light .clock-frame::before,
+.dark .clock-frame::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: #ccc;
   border-radius: 50%;
-  margin: 50px auto;
-  position: relative;
-  padding: 2rem;
-  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #efefef,
-    inset 0 0 10px black, 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.clock-face {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform: translateY(-3px); /* account for the height of the clock hands */
-}
-
-.hand {
-  width: 50%;
-  height: 6px;
-  background: black;
   position: absolute;
+  left: 50%;
   top: 50%;
-  transform-origin: 100%;
-  transform: rotate(90deg);
-  transition: all 0.05s;
-  transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 2px 4px -1px black;
+  z-index: 10;
 }
